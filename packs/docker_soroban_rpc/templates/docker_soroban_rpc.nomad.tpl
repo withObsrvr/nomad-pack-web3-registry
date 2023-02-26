@@ -41,11 +41,11 @@ job [[ template "job_name" . ]] {
       }
       template {
         data = <<EOF
-      \[\[HOME_DOMAINS\]\]
+      [[`[[HOME_DOMAINS]]`]]
       HOME_DOMAIN="futurenet.stellar.org"
       QUALITY="MEDIUM"
 
-      \[\[VALIDATORS\]\]
+      [[`[[VALIDATORS]]`]]
       NAME="sdf_futurenet_1"
       HOME_DOMAIN="futurenet.stellar.org"
       PUBLIC_KEY="GBRIF2N52GVN3EXBBICD5F4L5VUFXK6S6VOUCF6T2DWPLOLGWEPPYZTF"
