@@ -20,7 +20,7 @@ job [[ template "job_name" . ]] {
 
 
       config {
-        image = "stellar/soroban-rpc:[[ .docker_soroban_rpc.image_tag ]]"
+        image = "2opremio/soroban-rpc:[[ .docker_soroban_rpc.image_tag ]]"
         ports = ["http"]
         args  = [[ .docker_soroban_rpc.image_args | toJson ]]
 
