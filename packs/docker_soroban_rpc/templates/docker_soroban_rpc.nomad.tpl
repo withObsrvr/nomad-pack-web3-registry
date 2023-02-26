@@ -39,7 +39,23 @@ job [[ template "job_name" . ]] {
         destination = "${NOMAD_SECRETS_DIR}/env.vars"
         env         = true
       }
+      template {
+        data = <<EOF
+      [[HOME_DOMAINS]]
+      HOME_DOMAIN="futurenet.stellar.org"
+      QUALITY="MEDIUM"
 
+      [[VALIDATORS]]
+      NAME="sdf_futurenet_1"
+      HOME_DOMAIN="futurenet.stellar.org"
+      PUBLIC_KEY="GBRIF2N52GVN3EXBBICD5F4L5VUFXK6S6VOUCF6T2DWPLOLGWEPPYZTF"
+      ADDRESS="core-live-futurenet.stellar.org:11625"
+      HISTORY="curl -sf http://history-futurenet.stellar.org/{0} -o {1}"
+      {{ end }}
+        EOF
+        destination = "local/stellar_captive_core.cfg"
+        env         = true
+      }
       resources {
         cpu    = [[ .docker_soroban_rpc.task_resources.cpu ]]
         memory = [[ .docker_soroban_rpc.task_resources.memory ]]
