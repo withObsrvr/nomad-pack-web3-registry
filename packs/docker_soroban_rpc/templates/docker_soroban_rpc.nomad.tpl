@@ -41,6 +41,7 @@ job [[ template "job_name" . ]] {
       }
       template {
         data = <<EOF
+      UNSAFE_QUORUM=true
       [[`[[HOME_DOMAINS]]`]]
       HOME_DOMAIN="futurenet.stellar.org"
       QUALITY="MEDIUM"
