@@ -53,7 +53,6 @@ job [[ template "job_name" . ]] {
       HISTORY="curl -sf http://history-futurenet.stellar.org/{0} -o {1}"
         EOF
         destination = "local/stellar_captive_core.cfg"
-        env         = true
       }
 
       resources {
