@@ -29,32 +29,6 @@ job [[ template "job_name" . ]] {
           password = "${DOCKERHUB_PASSWORD}"
         }
       }
-      template {
-        data = <<EOF
-      {{ with nomadVar "nomad/jobs/[[ template "nomadvar_job_name" . ]]" }}
-      DOCKERHUB_USERNAME = {{ .dockerhub_username }}
-      DOCKERHUB_PASSWORD = {{ .dockerhub_password }}
-      {{ end }}
-        EOF
-        destination = "${NOMAD_SECRETS_DIR}/env.vars"
-        env         = true
-      }
-      template {
-        data = <<EOF
-      UNSAFE_QUORUM=true
-      [[`[[HOME_DOMAINS]]`]]
-      HOME_DOMAIN="futurenet.stellar.org"
-      QUALITY="MEDIUM"
-
-      [[`[[VALIDATORS]]`]]
-      NAME="sdf_futurenet_1"
-      HOME_DOMAIN="futurenet.stellar.org"
-      PUBLIC_KEY="GBRIF2N52GVN3EXBBICD5F4L5VUFXK6S6VOUCF6T2DWPLOLGWEPPYZTF"
-      ADDRESS="core-live-futurenet.stellar.org:11625"
-      HISTORY="curl -sf http://history-futurenet.stellar.org/{0} -o {1}"
-        EOF
-        destination = "local/stellar_captive_core.cfg"
-      }
 
       resources {
         cpu    = [[ .stoplight_prism_docker.task_resources.cpu ]]
@@ -78,7 +52,7 @@ job [[ template "job_name" . ]] {
     }
     network {
       port "http" {
-        to = 8000
+        to = 4010
       }
     }
   }
