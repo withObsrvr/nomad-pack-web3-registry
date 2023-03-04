@@ -29,6 +29,17 @@ job [[ template "job_name" . ]] {
           password = "${DOCKERHUB_PASSWORD}"
         }
       }
+      template {
+        data = <<EOF
+      {{ with nomadVar "nomad/jobs/[[ template "nomadvar_job_name" . ]]" }}
+      DOCKERHUB_USERNAME = {{ .dockerhub_username }}
+      DOCKERHUB_PASSWORD = {{ .dockerhub_password }}
+      {{ end }}
+        EOF
+        destination = "${NOMAD_SECRETS_DIR}/env.vars"
+        env         = true
+      }
+
 
       resources {
         cpu    = [[ .stoplight_prism_docker.task_resources.cpu ]]
