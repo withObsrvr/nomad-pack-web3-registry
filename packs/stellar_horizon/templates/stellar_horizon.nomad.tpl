@@ -33,7 +33,7 @@ job [[ template "job_name" . ]] {
         data        = <<EOF
       {{ range nomadService "postgres" }}
       DATABASE_URL="postgresql://[[ .stellar_horizon.db_user ]]:[[ .stellar_horizon.db_password ]]@{{ .Address }}:{{ .Port }}/[[ .stellar_horizon.db_name ]]?sslmode=disable"
-      NETWORK_PASSPHRASE="{{ .stellar_horizon.network_passphrase }}"
+      NETWORK_PASSPHRASE="[[ .stellar_horizon.network_passphrase ]]"
       {{ end }}
         EOF
         destination = "local/env.txt"
