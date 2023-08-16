@@ -33,9 +33,7 @@ variable "image_args" {
   type        = list(string)
   default     = [
     "mock",
-    "https://raw.githubusercontent.com/withObsrvr/obsrvr-openapi/main/reference/Obsrvr-API.yaml",
-    "-h",
-    "0.0.0.0"
+    "https://raw.githubusercontent.com/withObsrvr/obsrvr-openapi/main/reference/Obsrvr-API.yaml"
   ]
 }
 
