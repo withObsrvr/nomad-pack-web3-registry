@@ -62,6 +62,12 @@ variable "datacenters" {
   default     = ["dc1"]
 }
 
+variable "network_passphrase" {
+  description = "The network passphrase to use for the app"
+  type        = string
+  default     = "Test SDF Network ; September 2015"
+}
+
 variable "register_service" {
   description = "If you want to register a nomad or consul service for the job"
   type        = bool
