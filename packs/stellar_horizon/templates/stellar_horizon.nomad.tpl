@@ -30,6 +30,15 @@ job [[ template "job_name" . ]] {
         }
       }
       template {
+        data        = <<EOF
+      {{ range nomadService "postgres" }}
+      DATABASE_URL="postgresql://[[ .stellar_horizon.db_user ]]:[[ .stellar_horizon.db_password ]]@{{ .Address }}:{{ .Port }}/[[ .stellar_horizon.db_name ]]?sslmode=disable"
+      {{ end }}
+        EOF
+        destination = "local/env.txt"
+        env         = true
+      }
+      template {
         data = <<EOF
       {{ with nomadVar "nomad/jobs/[[ template "nomadvar_job_name" . ]]" }}
       DOCKERHUB_USERNAME = {{ .dockerhub_username }}

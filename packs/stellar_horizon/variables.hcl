@@ -22,6 +22,24 @@ variable "count" {
   default     = 1
 }
 
+variable "db_user" {
+    description = "The database user to use for the app"
+    type        = string
+    default     = "postgres"
+}
+
+variable "db_password" {
+    description = "The database password to use for the app"
+    type        = string
+    default     = "postgres"
+}
+
+variable "db_name" {
+    description = "The database name to use for the app"
+    type        = string
+    default     = "postgres"
+}
+
 variable "image_tag" {
   description = "The image tag to use for the app"
   type        = string
