@@ -8,6 +8,7 @@ job [[ template "job_name" . ]] {
     count = [[ .stellar_horizon.count ]]
 
     network {
+      mode = "bridge"
       port "http" {
         to = 8000
       }
@@ -40,7 +41,7 @@ job [[ template "job_name" . ]] {
 
       config {
         image = "postgres:[[ .stellar_horizon.db_image_tag ]]"
-        network_mode = "bridge"
+    
 
 
         auth {
