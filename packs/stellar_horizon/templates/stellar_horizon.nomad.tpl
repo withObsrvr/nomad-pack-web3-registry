@@ -13,7 +13,7 @@ job [[ template "job_name" . ]] {
         to = 8000
       }
       port "db" {
-        to = 5432
+        static = 5432
       }
     }
 
