@@ -8,7 +8,7 @@ job [[ template "job_name" . ]] {
     count = [[ .stellar_horizon.count ]]
 
     network {
-      mode = "bridge"
+      mode = "host"
       port "http" {
         to = 8000
       }
