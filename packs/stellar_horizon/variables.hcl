@@ -40,6 +40,24 @@ variable "db_name" {
     default     = "postgres"
 }
 
+variable "db_image_tag" {
+  description = "The image tag to use for the app"
+  type        = string
+  default     = "latest"
+}
+
+variable "db_dockerhub_username" {
+  description = "The dockerhub username to use for the app"
+  type        = string
+  default     = ""
+}
+
+variable "db_dockerhub_password" {
+  description = "The dockerhub password to use for the app"
+  type        = string
+  default     = ""
+}
+
 variable "image_tag" {
   description = "The image tag to use for the app"
   type        = string
@@ -102,6 +120,18 @@ variable "service_tags" {
 }
 
 variable "task_resources" {
+  description = "The resource to assign to the Stellar Horizon task."
+  type        = object({
+    cpu    = number
+    memory = number
+  })
+  default = {
+    cpu    = 1000,
+    memory = 2000,
+  }
+}
+
+variable "db_task_resources" {
   description = "The resource to assign to the Stellar Horizon task."
   type        = object({
     cpu    = number
