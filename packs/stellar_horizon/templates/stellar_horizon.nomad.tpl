@@ -102,6 +102,8 @@ job [[ template "job_name" . ]] {
       DATABASE_URL="postgresql://[[ .stellar_horizon.db_user ]]:[[ .stellar_horizon.db_password ]]@{{ .Address }}:{{ .Port }}/[[ .stellar_horizon.db_name ]]?sslmode=disable"
       NETWORK_PASSPHRASE="[[ .stellar_horizon.network_passphrase ]]"
       HISTORY_ARCHIVE_URLS="https://history.stellar.org/prd/core-testnet/core_testnet_001,https://history.stellar.org/prd/core-testnet/core_testnet_002"
+      STELLAR_CORE_BINARY_PATH="/usr/bin/stellar-core"
+      CAPTIVE_CORE_CONFIG_PATH="/etc/default/stellar-captive-core.toml"
       {{ end }}
         EOF
         destination = "local/env.txt"
