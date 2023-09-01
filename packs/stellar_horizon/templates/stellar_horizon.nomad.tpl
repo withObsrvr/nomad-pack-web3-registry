@@ -101,6 +101,7 @@ job [[ template "job_name" . ]] {
       {{ range nomadService "postgres" }}
       DATABASE_URL="postgresql://[[ .stellar_horizon.db_user ]]:[[ .stellar_horizon.db_password ]]@{{ .Address }}:{{ .Port }}/[[ .stellar_horizon.db_name ]]?sslmode=disable"
       NETWORK_PASSPHRASE="[[ .stellar_horizon.network_passphrase ]]"
+      HISTORY_ARCHIVE_URLS="https://history.stellar.org/prd/core-testnet/core_testnet_001,https://history.stellar.org/prd/core-testnet/core_testnet_002"
       {{ end }}
         EOF
         destination = "local/env.txt"
