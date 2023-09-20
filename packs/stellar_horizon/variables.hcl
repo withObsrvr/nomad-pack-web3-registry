@@ -22,6 +22,12 @@ variable "count" {
   default     = 1
 }
 
+variable "db_job_name" {
+  description = "The name to use as the db job name which overrides using the pack name"
+  type        = string
+  default     = ""
+}
+
 variable "db_user" {
     description = "The database user to use for the app"
     type        = string

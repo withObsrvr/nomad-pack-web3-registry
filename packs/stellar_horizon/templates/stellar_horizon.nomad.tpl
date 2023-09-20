@@ -30,7 +30,7 @@ job [[ template "job_name" . ]] {
       mode     = "delay"
     }
 
-    task "postgres" {
+    task [[ template "db_job_name" . ]] {
       driver = "docker"
 
       volume_mount {
