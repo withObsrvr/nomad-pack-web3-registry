@@ -30,7 +30,7 @@ job [[ template "job_name" . ]] {
       mode     = "delay"
     }
 
-    task [[ stellar_horizon.db_job_name ]] {
+    task [[ .stellar_horizon.db_job_name ]] {
       driver = "docker"
 
       volume_mount {
