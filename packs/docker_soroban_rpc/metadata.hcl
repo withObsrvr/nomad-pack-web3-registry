@@ -1,5 +1,5 @@
 app {
-  url    = "https://hub.docker.com/r/2opremio/soroban-rpc"
+  url    = "https://hub.docker.com/r/stellar/soroban-rpc"
   author = "Tillman Mosley III"
 }
 
