@@ -9,7 +9,11 @@ variable "namespace" {
   type        = string
   default     = ""
 }
-
+variable "network_passphrase" {
+  description = "The network passphrase to use for the app"
+  type        = string
+  default     = "Test SDF Network ; September 2015"
+}
 variable "region" {
   description = "The region where jobs will be deployed"
   type        = string

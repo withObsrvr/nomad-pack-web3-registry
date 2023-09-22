@@ -30,6 +30,16 @@ job [[ template "job_name" . ]] {
         }
       }
       template {
+        data        = <<EOF
+      NETWORK_PASSPHRASE="[[ .docker_soroban_rpc.network_passphrase ]]"
+      HISTORY_ARCHIVE_URLS="https://history.stellar.org/prd/core-testnet/core_testnet_001,https://history.stellar.org/prd/core-testnet/core_testnet_002"
+      STELLAR_CORE_BINARY_PATH="/usr/bin/stellar-core"
+      CAPTIVE_CORE_CONFIG_PATH="local/stellar_captive_core.cfg"
+        EOF
+        destination = "local/env.txt"
+        env         = true
+      }
+      template {
         data = <<EOF
       {{ with nomadVar "nomad/jobs/[[ template "nomadvar_job_name" . ]]" }}
       DOCKERHUB_USERNAME = {{ .dockerhub_username }}
