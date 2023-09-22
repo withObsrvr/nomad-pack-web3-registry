@@ -20,7 +20,7 @@ job [[ template "job_name" . ]] {
 
 
       config {
-        image = "2opremio/soroban-rpc:[[ .docker_soroban_rpc.image_tag ]]"
+        image = "stellar/soroban-rpc:[[ .docker_soroban_rpc.image_tag ]]"
         ports = ["http"]
         args  = [[ .docker_soroban_rpc.image_args | toJson ]]
 
@@ -41,17 +41,30 @@ job [[ template "job_name" . ]] {
       }
       template {
         data = <<EOF
-      UNSAFE_QUORUM=true
       [[`[[HOME_DOMAINS]]`]]
-      HOME_DOMAIN="futurenet.stellar.org"
-      QUALITY="MEDIUM"
+      HOME_DOMAIN="testnet.stellar.org"
+      QUALITY="HIGH"
 
       [[`[[VALIDATORS]]`]]
-      NAME="sdf_futurenet_1"
-      HOME_DOMAIN="futurenet.stellar.org"
-      PUBLIC_KEY="GBRIF2N52GVN3EXBBICD5F4L5VUFXK6S6VOUCF6T2DWPLOLGWEPPYZTF"
-      ADDRESS="core-live-futurenet.stellar.org:11625"
-      HISTORY="curl -sf http://history-futurenet.stellar.org/{0} -o {1}"
+      NAME="sdf_testnet_1"
+      HOME_DOMAIN="testnet.stellar.org"
+      PUBLIC_KEY="GDKXE2OZMJIPOSLNA6N6F2BVCI3O777I2OOC4BV7VOYUEHYX7RTRYA7Y"
+      ADDRESS="core-testnet1.stellar.org"
+      HISTORY="curl -sf http://history.stellar.org/prd/core-testnet/core_testnet_001/{0} -o {1}"
+
+      [[`[[VALIDATORS]]`]]
+      NAME="sdf_testnet_2"
+      HOME_DOMAIN="testnet.stellar.org"
+      PUBLIC_KEY="GCUCJTIYXSOXKBSNFGNFWW5MUQ54HKRPGJUTQFJ5RQXZXNOLNXYDHRAP"
+      ADDRESS="core-testnet2.stellar.org"
+      HISTORY="curl -sf http://history.stellar.org/prd/core-testnet/core_testnet_002/{0} -o {1}"
+
+      [[`[[VALIDATORS]]`]]
+      NAME="sdf_testnet_3"
+      HOME_DOMAIN="testnet.stellar.org"
+      PUBLIC_KEY="GC2V2EFSXN6SQTWVYA5EPJPBWWIMSD2XQNKUOHGEKB535AQE2I6IXV2Z"
+      ADDRESS="core-testnet3.stellar.org"
+      HISTORY="curl -sf http://history.stellar.org/prd/core-testnet/core_testnet_003/{0} -o {1}"
         EOF
         destination = "local/stellar_captive_core.cfg"
       }
