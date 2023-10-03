@@ -37,7 +37,7 @@ variable "image_args" {
   type        = list(string)
   default     = [
     "--endpoint=0.0.0.0:8000",
-    "--log-level=info",
+    "--log-level=debug",
     "--network-passphrase='Test SDF Future Network ; October 2022'"
   ]
 }

@@ -148,3 +148,9 @@ variable "db_task_resources" {
     memory = 2000,
   }
 }
+
+variable "history_retention_count" {
+  description = "The number of ledgers to retain in history archives"
+  type        = number
+  default     = 43200
+}

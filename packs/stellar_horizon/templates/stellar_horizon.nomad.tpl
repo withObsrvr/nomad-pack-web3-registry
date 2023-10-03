@@ -104,6 +104,7 @@ job [[ template "job_name" . ]] {
       HISTORY_ARCHIVE_URLS="https://history.stellar.org/prd/core-testnet/core_testnet_001,https://history.stellar.org/prd/core-testnet/core_testnet_002"
       STELLAR_CORE_BINARY_PATH="/usr/bin/stellar-core"
       CAPTIVE_CORE_CONFIG_PATH="local/stellar_captive_core.cfg"
+      HISTORY_RETENTION_COUNT="[[ .stellar_horizon.history_retention_count ]]"
       {{ end }}
         EOF
         destination = "local/env.txt"
