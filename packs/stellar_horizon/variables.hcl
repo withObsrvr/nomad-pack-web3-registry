@@ -16,6 +16,12 @@ variable "region" {
   default     = ""
 }
 
+variable "captive_core_cfg" {
+  description = "The config to use for the captive core"
+  type        = string
+  default     = ""
+}
+
 variable "count" {
   description = "The number of app instances to deploy"
   type        = number

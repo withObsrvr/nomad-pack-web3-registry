@@ -5,6 +5,7 @@ The Stellar Horizon nomad pack provides a simple way to run the Stellar Horizon 
 ## Variables
 
 - `count` (number) - The number of app instances to deploy
+- `captive_core_cfg` (string) - Config used for captive core
 - `job_name` (string) - The name to use as the job name which overrides using the pack name
 - `datacenters` (list of strings) - A list of datacenters in the region which are eligible for task placement
 - `image_args` (list of string) - The arguments to use for the Docker image
