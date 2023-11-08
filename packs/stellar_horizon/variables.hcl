@@ -155,6 +155,12 @@ variable "db_task_resources" {
   }
 }
 
+variable "history_archive_urls" {
+  description = "A list of history archive urls to use for the app"
+  type        = string
+  default     = "https://history.stellar.org/prd/core-testnet/core_testnet_001,https://history.stellar.org/prd/core-testnet/core_testnet_002"
+}
+
 variable "history_retention_count" {
   description = "The number of ledgers to retain in history archives"
   type        = number

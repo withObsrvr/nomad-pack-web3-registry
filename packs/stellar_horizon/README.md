@@ -17,3 +17,4 @@ The Stellar Horizon nomad pack provides a simple way to run the Stellar Horizon 
 - `service_registration_provider` (string) - The provider name used for Service Discovery
 - `service_tags` (list of string) - List of tags associated with the Service
 - `task_resources` (object) - An object of the resources allocated to the task
+`history_archive_urls` (string) - A string of the URLS for the history archives
