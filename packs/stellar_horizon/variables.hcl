@@ -22,6 +22,18 @@ variable "captive_core_cfg" {
   default     = ""
 }
 
+variable "core1_port" {
+  description = "The port to use for the first core instance"
+  type        = number
+  default     = 11626
+}
+
+variable "core2_port" {
+  description = "The port to use for the second core instance"
+  type        = number
+  default     = 11625
+}
+
 variable "count" {
   description = "The number of app instances to deploy"
   type        = number

@@ -15,6 +15,12 @@ job [[ template "job_name" . ]] {
       port "db" {
         static = 5432
       }
+      port "core1" {
+        static = [[ .stellar_horizon.core1_port ]]
+      }
+      port "core2" {
+        static = [[ .stellar_horizon.core2_port ]]
+      }
     }
 
     volume "postgresql" {
@@ -88,7 +94,7 @@ job [[ template "job_name" . ]] {
 
       config {
         image = "stellar/stellar-horizon:[[ .stellar_horizon.image_tag ]]"
-        ports = ["http"]
+        ports = ["http", "core1", "core2"]
         args  = [[ .stellar_horizon.image_args | toJson ]]
 
         auth {
