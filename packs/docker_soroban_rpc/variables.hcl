@@ -1,3 +1,9 @@
+variable "history_archive_urls" {
+  description = "A list of history archive urls to use for the app"
+  type        = string
+  default     = "https://history.stellar.org/prd/core-testnet/core_testnet_001,https://history.stellar.org/prd/core-testnet/core_testnet_002"
+}
+
 variable "job_name" {
   description = "The name to use as the job name which overrides using the pack name"
   type        = string
@@ -20,6 +26,11 @@ variable "region" {
   default     = ""
 }
 
+variable "captive_core_cfg" {
+  description = "The config to use for the captive core"
+  type        = string
+  default     = ""
+}
 variable "count" {
   description = "The number of app instances to deploy"
   type        = number
