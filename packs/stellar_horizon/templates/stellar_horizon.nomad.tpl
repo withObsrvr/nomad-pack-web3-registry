@@ -148,6 +148,9 @@ job [[ template "job_name" . ]] {
           interval = "10s"
           timeout  = "2s"
         }
+        labels = {
+          [[ .stellar_horizon.service_labels ]]
+        }
 
         tags = [[ .stellar_horizon.service_tags | toJson ]]
       }
