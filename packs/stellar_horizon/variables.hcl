@@ -127,7 +127,11 @@ variable "registered_service_name" {
   type        = string
   default     = "webapp"
 }
-
+variable "service_labels" {
+  description = "A map of labels to register with the service"
+  type        = map(string)
+  default     = {}
+}
 variable "service_tags" {
   description = "A list of tags to register with the service"
   type        = list(string)
