@@ -10,7 +10,7 @@ job [[ template "job_name" . ]] {
     network {
       mode = "host"
       port "http" {
-        to = 8000
+        static = 8000
       }
       port "db" {
         static = 5432
