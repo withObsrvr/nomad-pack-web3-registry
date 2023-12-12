@@ -132,9 +132,6 @@ job [[ template "job_name" . ]] {
         EOF
         destination = "local/stellar_captive_core.cfg"
       }
-      env {
-        STELLAR_CORE_VERSION="[[ .stellar_horizon.stellar_core_version ]]"
-      }
 
       resources {
         cpu    = [[ .stellar_horizon.task_resources.cpu ]]
