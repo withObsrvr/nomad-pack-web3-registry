@@ -108,7 +108,6 @@ job [[ template "job_name" . ]] {
       DATABASE_URL="postgresql://[[ .stellar_horizon.db_user ]]:[[ .stellar_horizon.db_password ]]@{{ .Address }}:{{ .Port }}/[[ .stellar_horizon.db_name ]]?sslmode=disable"
       NETWORK_PASSPHRASE="[[ .stellar_horizon.network_passphrase ]]"
       HISTORY_ARCHIVE_URLS="[[ .stellar_horizon.history_archive_urls ]]"
-      STELLAR_CORE_VERSION="[[ .stellar_horizon.stellar_core_version ]]"
       STELLAR_CORE_BINARY_PATH="/usr/bin/stellar-core"
       CAPTIVE_CORE_CONFIG_PATH="local/stellar_captive_core.cfg"
       HISTORY_RETENTION_COUNT="[[ .stellar_horizon.history_retention_count ]]"
@@ -122,6 +121,7 @@ job [[ template "job_name" . ]] {
       {{ with nomadVar "nomad/jobs/[[ template "nomadvar_job_name" . ]]" }}
       DOCKERHUB_USERNAME = {{ .dockerhub_username }}
       DOCKERHUB_PASSWORD = {{ .dockerhub_password }}
+      STELLAR_CORE_VERSION="[[ .stellar_horizon.stellar_core_version ]]"
       {{ end }}
         EOF
         destination = "${NOMAD_SECRETS_DIR}/env.vars"
