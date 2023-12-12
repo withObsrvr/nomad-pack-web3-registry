@@ -121,7 +121,6 @@ job [[ template "job_name" . ]] {
       {{ with nomadVar "nomad/jobs/[[ template "nomadvar_job_name" . ]]" }}
       DOCKERHUB_USERNAME = {{ .dockerhub_username }}
       DOCKERHUB_PASSWORD = {{ .dockerhub_password }}
-      STELLAR_CORE_VERSION="[[ .stellar_horizon.stellar_core_version ]]"
       {{ end }}
         EOF
         destination = "${NOMAD_SECRETS_DIR}/env.vars"
@@ -132,6 +131,9 @@ job [[ template "job_name" . ]] {
       [[ .stellar_horizon.captive_core_cfg ]]  
         EOF
         destination = "local/stellar_captive_core.cfg"
+      }
+      env {
+        STELLAR_CORE_VERSION="[[ .stellar_horizon.stellar_core_version ]]"
       }
 
       resources {
