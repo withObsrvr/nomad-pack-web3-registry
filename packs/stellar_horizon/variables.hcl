@@ -143,6 +143,12 @@ variable "service_tags" {
   ]
 }
 
+variable "stellar_core_version" {
+  description = "The version of Stellar Core to use"
+  type        = string
+  default     = "20.0.0-1615.617729910.focal"
+}
+
 variable "task_resources" {
   description = "The resource to assign to the Stellar Horizon task."
   type        = object({
