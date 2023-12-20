@@ -93,7 +93,7 @@ job [[ template "job_name" . ]] {
 
 
       config {
-        image = "tmosleyiii/stellar-horizon:[[ .stellar_horizon.image_tag ]]"
+        image = "stellar/stellar-horizon:[[ .stellar_horizon.image_tag ]]"
         ports = ["http", "core1", "core2"]
         args  = [[ .stellar_horizon.image_args | toJson ]]
 
