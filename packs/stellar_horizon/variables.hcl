@@ -178,3 +178,9 @@ variable "history_retention_count" {
   type        = number
   default     = 43200
 }
+
+variable "apply_migrations" {
+  description = "If you want to apply migrations to the database"
+  type        = bool
+  default     = false
+}

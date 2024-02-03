@@ -112,6 +112,7 @@ job [[ template "job_name" . ]] {
       CAPTIVE_CORE_CONFIG_PATH="local/stellar_captive_core.cfg"
       HISTORY_RETENTION_COUNT="[[ .stellar_horizon.history_retention_count ]]"
       {{ end }}
+      APPLY_MIGRATIONS=[[ .stellar_horizon.apply_migrations ]]
         EOF
         destination = "local/env.txt"
         env         = true
