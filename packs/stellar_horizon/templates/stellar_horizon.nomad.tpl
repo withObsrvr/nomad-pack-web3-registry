@@ -113,6 +113,7 @@ job [[ template "job_name" . ]] {
       HISTORY_RETENTION_COUNT="[[ .stellar_horizon.history_retention_count ]]"
       {{ end }}
       APPLY_MIGRATIONS=[[ .stellar_horizon.apply_migrations ]]
+      DISABLE_TX_SUB=[[ .stellar_horizon.disable_tx_sub ]]
         EOF
         destination = "local/env.txt"
         env         = true

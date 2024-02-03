@@ -184,3 +184,9 @@ variable "apply_migrations" {
   type        = bool
   default     = false
 }
+
+variable "disable_tx_sub" {
+  description = "If you want to disable the transaction submission"
+  type        = bool
+  default     = true
+}
