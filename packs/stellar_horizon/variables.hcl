@@ -82,6 +82,11 @@ variable "db_dockerhub_password" {
   default     = ""
 }
 
+variable "image_repo" {
+  description = "The image repository to use for the app"
+  type        = string
+  default     = "stellar/stellar-horizon"
+}
 variable "image_tag" {
   description = "The image tag to use for the app"
   type        = string
