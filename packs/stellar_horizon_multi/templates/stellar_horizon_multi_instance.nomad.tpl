@@ -1,11 +1,11 @@
 job [[ template "job_name" . ]] {
   [[ template "region" . ]]
-  datacenters = [[ .stellar_horizon.datacenters  | toJson ]]
+  datacenters = [[ .stellar_horizon_multi.datacenters  | toJson ]]
   type        = "service"
   [[ template "namespace" . ]]
 
   group [[ template "job_name" . ]] {
-    count = [[ .stellar_horizon.count ]]
+    count = [[ .stellar_horizon_multi.count ]]
 
     network {
       mode = "host"
@@ -13,10 +13,10 @@ job [[ template "job_name" . ]] {
         static = 8000
       }
       port "core1" {
-        static = [[ .stellar_horizon.core1_port ]]
+        static = [[ .stellar_horizon_multi.core1_port ]]
       }
       port "core2" {
-        static = [[ .stellar_horizon.core2_port ]]
+        static = [[ .stellar_horizon_multi.core2_port ]]
       }
     }
 
@@ -38,9 +38,9 @@ job [[ template "job_name" . ]] {
       driver = "docker"
       
       config {
-        image = "[[ .stellar_horizon.image_repo ]]:[[ .stellar_horizon.image_tag ]]"
+        image = "[[ .stellar_horizon_multi.image_repo ]]:[[ .stellar_horizon_multi.image_tag ]]"
         ports = ["http", "core1", "core2"]
-        args  = [[ .stellar_horizon.image_args | toJson ]]
+        args  = [[ .stellar_horizon_multi.image_args | toJson ]]
 
         auth {
           username = "${DOCKERHUB_USERNAME}"
@@ -50,16 +50,16 @@ job [[ template "job_name" . ]] {
       template {
         data        = <<EOF
       {{ range nomadService "postgres" }}
-      DATABASE_URL="postgresql://[[ .stellar_horizon.db_user ]]:[[ .stellar_horizon.db_password ]]@{{ .Address }}:{{ .Port }}/[[ .stellar_horizon.db_name ]]?sslmode=disable"
-      NETWORK_PASSPHRASE="[[ .stellar_horizon.network_passphrase ]]"
-      HISTORY_ARCHIVE_URLS="[[ .stellar_horizon.history_archive_urls ]]"
+      DATABASE_URL="postgresql://[[ .stellar_horizon_multi.db_user ]]:[[ .stellar_horizon_multi.db_password ]]@{{ .Address }}:{{ .Port }}/[[ .stellar_horizon_multi.db_name ]]?sslmode=disable"
+      NETWORK_PASSPHRASE="[[ .stellar_horizon_multi.network_passphrase ]]"
+      HISTORY_ARCHIVE_URLS="[[ .stellar_horizon_multi.history_archive_urls ]]"
       STELLAR_CORE_BINARY_PATH="/usr/bin/stellar-core"
       CAPTIVE_CORE_CONFIG_PATH="local/stellar_captive_core.cfg"
-      HISTORY_RETENTION_COUNT="[[ .stellar_horizon.history_retention_count ]]"
+      HISTORY_RETENTION_COUNT="[[ .stellar_horizon_multi.history_retention_count ]]"
       {{ end }}
-      APPLY_MIGRATIONS=[[ .stellar_horizon.apply_migrations ]]
-      DISABLE_TX_SUB=[[ .stellar_horizon.disable_tx_sub ]]
-      INGEST="[[ .stellar_horizon.ingest ]]"
+      APPLY_MIGRATIONS=[[ .stellar_horizon_multi.apply_migrations ]]
+      DISABLE_TX_SUB=[[ .stellar_horizon_multi.disable_tx_sub ]]
+      INGEST="[[ .stellar_horizon_multi.ingest ]]"
         EOF
         destination = "local/env.txt"
         env         = true
@@ -76,20 +76,20 @@ job [[ template "job_name" . ]] {
       }
       template {
         data = <<EOF
-      [[ .stellar_horizon.captive_core_cfg ]]  
+      [[ .stellar_horizon_multi.captive_core_cfg ]]  
         EOF
         destination = "local/stellar_captive_core.cfg"
       }
 
       resources {
-        cpu    = [[ .stellar_horizon.task_resources.cpu ]]
-        memory = [[ .stellar_horizon.task_resources.memory ]]
+        cpu    = [[ .stellar_horizon_multi.task_resources.cpu ]]
+        memory = [[ .stellar_horizon_multi.task_resources.memory ]]
       }
-      [[ if .stellar_horizon.register_service ]]
+      [[ if .stellar_horizon_multi.register_service ]]
       service {
-        name = "[[ .stellar_horizon.registered_service_name ]]"
+        name = "[[ .stellar_horizon_multi.registered_service_name ]]"
         port = "http"
-        provider = "[[ .stellar_horizon.service_registration_provider ]]"
+        provider = "[[ .stellar_horizon_multi.service_registration_provider ]]"
 
         check {
           type     = "tcp"
@@ -97,7 +97,7 @@ job [[ template "job_name" . ]] {
           timeout  = "2s"
         }
 
-        tags = [[ .stellar_horizon.service_tags | toJson ]]
+        tags = [[ .stellar_horizon_multi.service_tags | toJson ]]
       }
       [[ end ]]
     }

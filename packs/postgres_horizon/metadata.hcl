@@ -7,5 +7,5 @@ pack {
   name        = "postgres_horizon"
   description = "Postgresql Docker Image Nomad Pack"
   url         = "https://github.com/withObsrvr/nomad-pack-web3-registry/postgres_horizon"
-  version     = "0.0.1"
+  version     = "0.0.2"
 }
