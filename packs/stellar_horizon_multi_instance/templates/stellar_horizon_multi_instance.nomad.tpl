@@ -10,13 +10,13 @@ job [[ template "job_name" . ]] {
     network {
       mode = "host"
       port "http" {
-        static = 8000
+        to = [[ .stellar_horizon_multi_instance.http_port ]]
       }
       port "core1" {
-        static = [[ .stellar_horizon_multi_instance.core1_port ]]
+        to = [[ .stellar_horizon_multi_instance.core1_port ]]
       }
       port "core2" {
-        static = [[ .stellar_horizon_multi_instance.core2_port ]]
+        to = [[ .stellar_horizon_multi_instance.core2_port ]]
       }
     }
 

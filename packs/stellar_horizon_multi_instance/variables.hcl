@@ -22,6 +22,12 @@ variable "captive_core_cfg" {
   default     = ""
 }
 
+variable "http_port" {
+  description = "The port to use for the app"
+  type        = number
+  default     = 8000
+}
+
 variable "core1_port" {
   description = "The port to use for the first core instance"
   type        = number
