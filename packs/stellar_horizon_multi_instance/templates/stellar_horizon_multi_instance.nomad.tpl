@@ -57,6 +57,12 @@ job [[ template "job_name" . ]] {
       CAPTIVE_CORE_CONFIG_PATH="local/stellar_captive_core.cfg"
       HISTORY_RETENTION_COUNT="[[ .stellar_horizon_multi_instance.history_retention_count ]]"
       {{ end }}
+      [[ if .stellar_horizon_multi_instance.disable_tx_sub ]]
+      [[ else ]]
+      {{ range nomadService "[[ .stellar_horizon_multi_instance.ingest_service_name ]]" }}
+      STELLAR_CORE_URL="http://{{ .Address }}:{{ .Port }}/"
+      {{ end }}
+      [[ end ]]
       APPLY_MIGRATIONS=[[ .stellar_horizon_multi_instance.apply_migrations ]]
       DISABLE_TX_SUB=[[ .stellar_horizon_multi_instance.disable_tx_sub ]]
       INGEST="[[ .stellar_horizon_multi_instance.ingest ]]"
@@ -89,6 +95,21 @@ job [[ template "job_name" . ]] {
       service {
         name = "[[ .stellar_horizon_multi_instance.registered_service_name ]]"
         port = "http"
+        provider = "[[ .stellar_horizon_multi_instance.service_registration_provider ]]"
+
+        check {
+          type     = "tcp"
+          interval = "10s"
+          timeout  = "2s"
+        }
+
+        tags = [[ .stellar_horizon_multi_instance.service_tags | toJson ]]
+      }
+      [[ end ]]
+      [[ if .stellar_horizon_multi_instance.ingest ]]
+      service {
+        name = "[[ .stellar_horizon_multi_instance.ingest_service_name ]]"
+        port = "core1"
         provider = "[[ .stellar_horizon_multi_instance.service_registration_provider ]]"
 
         check {

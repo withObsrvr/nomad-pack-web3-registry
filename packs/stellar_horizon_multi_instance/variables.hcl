@@ -22,6 +22,12 @@ variable "captive_core_cfg" {
   default     = ""
 }
 
+variable "environment" {
+  description = "The stellar environment to deploy the job into"
+  type        = string
+  default     = "testnet"
+}
+
 variable "http_port" {
   description = "The port to use for the app"
   type        = number
@@ -95,6 +101,12 @@ variable "registered_service_name" {
   description = "The service name for the Stellar Horizon service"
   type        = string
   default     = "webapp"
+}
+
+variable "ingest_service_name" {
+  description = "The service name for the Stellar Horizon service"
+  type        = string
+  default     = "horizon-ingest"
 }
 
 variable "db_service_name" {
