@@ -58,7 +58,6 @@ job [[ template "job_name" . ]] {
       HISTORY_RETENTION_COUNT="[[ .stellar_horizon_multi_instance.history_retention_count ]]"
       {{ end }}
       [[ if .stellar_horizon_multi_instance.disable_tx_sub ]]
-      STELLAR_CORE_URL="http://127.0.0.1:11626/"
       [[ else ]]
       {{ range nomadService "[[ .stellar_horizon_multi_instance.ingest_service_name ]]" }}
       STELLAR_CORE_URL="http://127.0.0.1:{{ .Port }}/"
