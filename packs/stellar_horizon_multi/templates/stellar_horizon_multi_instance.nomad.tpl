@@ -49,7 +49,7 @@ job [[ template "job_name" . ]] {
       }
       template {
         data        = <<EOF
-      {{ range nomadService "postgres" }}
+      {{ range nomadService "[[ .stellar_horizon_multi.db_service_name ]]" }}
       DATABASE_URL="postgresql://[[ .stellar_horizon_multi.db_user ]]:[[ .stellar_horizon_multi.db_password ]]@{{ .Address }}:{{ .Port }}/[[ .stellar_horizon_multi.db_name ]]?sslmode=disable"
       NETWORK_PASSPHRASE="[[ .stellar_horizon_multi.network_passphrase ]]"
       HISTORY_ARCHIVE_URLS="[[ .stellar_horizon_multi.history_archive_urls ]]"

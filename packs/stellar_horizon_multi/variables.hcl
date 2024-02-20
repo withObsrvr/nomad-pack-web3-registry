@@ -91,6 +91,12 @@ variable "registered_service_name" {
   default     = "webapp"
 }
 
+variable "db_service_name" {
+  description = "The service name for the Stellar Horizon database"
+  type        = string
+  default     = "postgres"
+}
+
 variable "service_tags" {
   description = "A list of tags to register with the service"
   type        = list(string)
