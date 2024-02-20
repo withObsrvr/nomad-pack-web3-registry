@@ -155,3 +155,21 @@ variable "ingest" {
   type        = bool
   default     = true
 }
+
+variable "db_user" {
+    description = "The database user to use for the app"
+    type        = string
+    default     = "postgres"
+}
+
+variable "db_password" {
+    description = "The database password to use for the app"
+    type        = string
+    default     = "postgres"
+}
+
+variable "db_name" {
+    description = "The database name to use for the app"
+    type        = string
+    default     = "postgres"
+}
