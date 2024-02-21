@@ -51,12 +51,12 @@ job [[ template "job_name" . ]] {
         data        = <<EOF
       {{ range nomadService "[[ .stellar_horizon_multi_instance.db_service_name ]]" }}
       DATABASE_URL="postgresql://[[ .stellar_horizon_multi_instance.db_user ]]:[[ .stellar_horizon_multi_instance.db_password ]]@{{ .Address }}:{{ .Port }}/[[ .stellar_horizon_multi_instance.db_name ]]?sslmode=disable"
+      NETWORK_PASSPHRASE="[[ .stellar_horizon_multi_instance.network_passphrase ]]"
       HISTORY_ARCHIVE_URLS="[[ .stellar_horizon_multi_instance.history_archive_urls ]]"
       STELLAR_CORE_BINARY_PATH="/usr/bin/stellar-core"
       CAPTIVE_CORE_CONFIG_PATH="local/stellar_captive_core.cfg"
       HISTORY_RETENTION_COUNT="[[ .stellar_horizon_multi_instance.history_retention_count ]]"
       STELLAR_CORE_URL = "http://localhost:11626"
-      NETWORK = "[[ .stellar_horizon_multi_instance.network]]"
       {{ end }}
 
       APPLY_MIGRATIONS=[[ .stellar_horizon_multi_instance.apply_migrations ]]
