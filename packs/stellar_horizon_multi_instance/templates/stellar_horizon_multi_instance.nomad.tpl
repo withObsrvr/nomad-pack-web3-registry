@@ -12,9 +12,15 @@ job [[ template "job_name" . ]] {
       port "http" {
         to = [[ .stellar_horizon_multi_instance.http_port ]]
       }
+      [[ if .stellar_horizon_multi_instance.ingest ]]
+      port "core1" {
+        static = [[ .stellar_horizon_multi_instance.core1_port ]]
+      }
+      [[ else ]]
       port "core1" {
         to = [[ .stellar_horizon_multi_instance.core1_port ]]
       }
+      [[ end ]]
       port "core2" {
         to = [[ .stellar_horizon_multi_instance.core2_port ]]
       }
