@@ -102,21 +102,6 @@ job [[ template "job_name" . ]] {
         tags = [[ .stellar_horizon_multi_instance.service_tags | toJson ]]
       }
       [[ end ]]
-      [[ if .stellar_horizon_multi_instance.ingest ]]
-      service {
-        name = "[[ .stellar_horizon_multi_instance.ingest_service_name ]]"
-        port = "core1"
-        provider = "[[ .stellar_horizon_multi_instance.service_registration_provider ]]"
-
-        check {
-          type     = "tcp"
-          interval = "10s"
-          timeout  = "2s"
-        }
-
-        tags = [[ .stellar_horizon_multi_instance.service_tags | toJson ]]
-      }
-      [[ end ]]
     }
   }
 }
