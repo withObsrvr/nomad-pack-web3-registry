@@ -21,9 +21,15 @@ job [[ template "job_name" . ]] {
         to = [[ .stellar_horizon_multi_instance.core1_port ]]
       }
       [[ end ]]
+      [[ if .stellar_horizon_multi_instance.ingest ]]
+      port "core2" {
+        static = [[ .stellar_horizon_multi_instance.core2_port ]]
+      }
+      [[ else ]]
       port "core2" {
         to = [[ .stellar_horizon_multi_instance.core2_port ]]
       }
+      [[ end ]]
     }
 
     volume "postgresql" {
