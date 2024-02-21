@@ -60,7 +60,6 @@ job [[ template "job_name" . ]] {
       [[ if .stellar_horizon_multi_instance.disable_tx_sub ]]
       [[ else ]]
       {{ range nomadService "[[ .stellar_horizon_multi_instance.ingest_service_name ]]" }}
-      STELLAR_CORE_URL="http://{{ .Address }}:{{ .Port }}/"
       {{ end }}
       [[ end ]]
       APPLY_MIGRATIONS=[[ .stellar_horizon_multi_instance.apply_migrations ]]
