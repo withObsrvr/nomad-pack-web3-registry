@@ -12,24 +12,12 @@ job [[ template "job_name" . ]] {
       port "http" {
         to = [[ .stellar_horizon_multi_instance.http_port ]]
       }
-      [[ if .stellar_horizon_multi_instance.ingest ]]
-      port "core1" {
-        static = [[ .stellar_horizon_multi_instance.core1_port ]]
-      }
-      [[ else ]]
       port "core1" {
         to = [[ .stellar_horizon_multi_instance.core1_port ]]
       }
-      [[ end ]]
-      [[ if .stellar_horizon_multi_instance.ingest ]]
-      port "core2" {
-        static = [[ .stellar_horizon_multi_instance.core2_port ]]
-      }
-      [[ else ]]
       port "core2" {
         to = [[ .stellar_horizon_multi_instance.core2_port ]]
       }
-      [[ end ]]
     }
 
     volume "postgresql" {
@@ -75,7 +63,6 @@ job [[ template "job_name" . ]] {
       {{ end }}
       [[ end ]]
       {{ end }}
-      
       APPLY_MIGRATIONS=[[ .stellar_horizon_multi_instance.apply_migrations ]]
       DISABLE_TX_SUB=[[ .stellar_horizon_multi_instance.disable_tx_sub ]]
       INGEST=[[ .stellar_horizon_multi_instance.ingest ]]
