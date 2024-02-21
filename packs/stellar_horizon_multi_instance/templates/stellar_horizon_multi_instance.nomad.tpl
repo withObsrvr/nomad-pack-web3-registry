@@ -56,13 +56,7 @@ job [[ template "job_name" . ]] {
       STELLAR_CORE_BINARY_PATH="/usr/bin/stellar-core"
       CAPTIVE_CORE_CONFIG_PATH="local/stellar_captive_core.cfg"
       HISTORY_RETENTION_COUNT="[[ .stellar_horizon_multi_instance.history_retention_count ]]"
-      [[ if .stellar_horizon_multi_instance.disable_tx_sub ]]
-      [[ else ]]
-      {{ range nomadService "[[ .stellar_horizon_multi_instance.ingest_service_name ]]" }}
       STELLAR_CORE_URL="http://localhost:11626/"
-      {{ end }}
-      [[ end ]]
-      {{ end }}
       APPLY_MIGRATIONS=[[ .stellar_horizon_multi_instance.apply_migrations ]]
       DISABLE_TX_SUB=[[ .stellar_horizon_multi_instance.disable_tx_sub ]]
       INGEST=[[ .stellar_horizon_multi_instance.ingest ]]
