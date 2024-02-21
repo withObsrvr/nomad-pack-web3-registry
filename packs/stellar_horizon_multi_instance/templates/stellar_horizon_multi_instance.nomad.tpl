@@ -56,7 +56,6 @@ job [[ template "job_name" . ]] {
       STELLAR_CORE_BINARY_PATH="/usr/bin/stellar-core"
       CAPTIVE_CORE_CONFIG_PATH="local/stellar_captive_core.cfg"
       HISTORY_RETENTION_COUNT="[[ .stellar_horizon_multi_instance.history_retention_count ]]"
-      {{ end }}
       [[ if .stellar_horizon_multi_instance.disable_tx_sub ]]
       STELLAR_CORE_URL="http://{{ .Address }}:{{ .Port }}/"
       [[ else ]]
@@ -64,6 +63,8 @@ job [[ template "job_name" . ]] {
       STELLAR_CORE_URL="http://{{ .Address }}:{{ .Port }}/"
       {{ end }}
       [[ end ]]
+      {{ end }}
+      
       APPLY_MIGRATIONS=[[ .stellar_horizon_multi_instance.apply_migrations ]]
       DISABLE_TX_SUB=[[ .stellar_horizon_multi_instance.disable_tx_sub ]]
       INGEST="[[ .stellar_horizon_multi_instance.ingest ]]"
