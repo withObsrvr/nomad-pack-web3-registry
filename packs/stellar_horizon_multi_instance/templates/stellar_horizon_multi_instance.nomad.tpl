@@ -69,7 +69,6 @@ job [[ template "job_name" . ]] {
       CAPTIVE_CORE_CONFIG_PATH="local/stellar_captive_core.cfg"
       HISTORY_RETENTION_COUNT="[[ .stellar_horizon_multi_instance.history_retention_count ]]"
       [[ if .stellar_horizon_multi_instance.disable_tx_sub ]]
-      STELLAR_CORE_URL="http://{{ .Address }}:[[ .stellar_horizon_multi_instance.core1_port ]]/"
       [[ else ]]
       {{ range nomadService "[[ .stellar_horizon_multi_instance.ingest_service_name ]]" }}
       STELLAR_CORE_URL="http://{{ .Address }}:{{ .Port }}/"
@@ -79,7 +78,7 @@ job [[ template "job_name" . ]] {
       
       APPLY_MIGRATIONS=[[ .stellar_horizon_multi_instance.apply_migrations ]]
       DISABLE_TX_SUB=[[ .stellar_horizon_multi_instance.disable_tx_sub ]]
-      INGEST="[[ .stellar_horizon_multi_instance.ingest ]]"
+      INGEST=[[ .stellar_horizon_multi_instance.ingest ]]
         EOF
         destination = "local/env.txt"
         env         = true
