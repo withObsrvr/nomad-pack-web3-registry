@@ -191,3 +191,9 @@ variable "db_name" {
     type        = string
     default     = "postgres"
 }
+
+variable "network" {
+    description = "The network to use for the app"
+    type        = string
+    default     = "testnet"
+}
