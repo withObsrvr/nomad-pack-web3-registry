@@ -13,7 +13,7 @@ job [[ template "job_name" . ]] {
         static = 8000
       }
       port "db" {
-        static = 15432
+        to = 5432
       }
       port "core1" {
         static = [[ .stellar_horizon.core1_port ]]
