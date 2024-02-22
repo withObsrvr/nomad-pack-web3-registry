@@ -41,7 +41,7 @@ job [[ template "full_job_name" . ]] {
     }
     template {
       data = <<EOF
-    {{ with nomadVar "nomad/jobs/[[ template "full_job_name" . ]]" }}
+    {{ with nomadVar "nomad/jobs/[[ template "nomadvar_job_name" . ]]" }}
     DOCKERHUB_USERNAME = {{ .dockerhub_username }}
     DOCKERHUB_PASSWORD = {{ .dockerhub_password }}
     {{ end }}
