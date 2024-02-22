@@ -33,6 +33,10 @@ job [[ template "full_job_name" . ]] {
         volumes = [
           "local/config:/etc/prometheus/config",
         ]
+        auth {
+          username = "[[ .prometheus.db_dockerhub_username ]]"
+          password = "[[ .prometheus.db_dockerhub_password ]]"
+        }
       }
 
 [[- if ne .prometheus.prometheus_task_app_prometheus_yaml "" ]]
