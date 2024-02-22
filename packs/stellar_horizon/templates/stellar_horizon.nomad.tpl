@@ -97,7 +97,7 @@ job [[ template "job_name" . ]] {
 
       config {
         image = "[[ .stellar_horizon.image_repo ]]:[[ .stellar_horizon.image_tag ]]"
-        ports = ["http", "core1", "core2"]
+        ports = ["http", "core1", "core2", "admin"]
         args  = [[ .stellar_horizon.image_args | toJson ]]
 
         auth {
