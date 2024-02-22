@@ -87,38 +87,26 @@ global:
 rule_files:
   - rules.yml
 
-alerting:
- alertmanagers:
-    - consul_sd_configs:
-      - server: {{ env "attr.unique.network.ip-address" }}:8500
-        services:
-        - alertmanager
-
 scrape_configs:
   - job_name: prometheus
     static_configs:
     - targets:
       - 0.0.0.0:9090
-  - job_name: "nomad_server"
+  - job_name: "horizon"
+    metrics_path: "/metrics"
+    nomad_sd_configs:
+    - server: "{{ env "NOMAD_IP_horizon_testnet" }}"
+      services:
+        - "horizon-admin-testnet"
+  - job_name: "nomad_metrics"
     metrics_path: "/v1/metrics"
+    scrape_interval: 5s
     params:
       format:
       - "prometheus"
-    consul_sd_configs:
-    - server: "{{ env "attr.unique.network.ip-address" }}:8500"
-      services:
-        - "nomad"
-      tags:
-        - "http"
-  - job_name: "nomad_client"
-    metrics_path: "/v1/metrics"
-    params:
-      format:
-      - "prometheus"
-    consul_sd_configs:
-    - server: "{{ env "attr.unique.network.ip-address" }}:8500"
-      services:
-        - "nomad-client"
+    nomad_sd_configs:
+    - server: "{{ env "NOMAD_IP_prometheus_testnet" }}"
+      services: ['nomad-client', 'nomad']
 EOF
 }
 
