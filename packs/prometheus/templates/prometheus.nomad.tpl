@@ -19,7 +19,7 @@ job [[ template "full_job_name" . ]] {
       mode = [[ .prometheus.prometheus_group_network.mode | quote ]]
       [[- range $label, $to := .prometheus.prometheus_group_network.ports ]]
       port [[ $label | quote ]] {
-        to = [[ $to ]]
+        static = [[ $to ]]
       }
       [[- end ]]
     }
