@@ -16,6 +16,18 @@ variable "region" {
   default     = ""
 }
 
+variable "admin_port" {
+  description = "The port to use for the admin interface"
+  type        = number
+  default     = 8010
+}
+
+variable "admin_port_enable" {
+  description = "If you want to enable the admin port"
+  type        = bool
+  default     = false
+}
+
 variable "captive_core_cfg" {
   description = "The config to use for the captive core"
   type        = string
