@@ -160,6 +160,21 @@ variable "service_tags" {
   ]
 }
 
+variable "admin_service_tags" {
+  description = "A list of tags to register with the service"
+  type        = list(string)
+  // defaults to integrate with Traefik
+  // This routes at the root path "/", to route to this service from
+  // another path, change "urlprefix-/" to "urlprefix-/<PATH>" and
+  // "traefik.http.routers.http.rule=Path(`/`)" to
+  // "traefik.http.routers.http.rule=Path(`/<PATH>`)"
+  default     = [
+    "urlprefix-/",
+    "traefik.enable=true",
+    "traefik.http.routers.http.rule=Path(`/`)",
+  ]
+}
+
 variable "task_resources" {
   description = "The resource to assign to the Stellar Horizon task."
   type        = object({

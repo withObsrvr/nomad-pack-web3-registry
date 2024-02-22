@@ -21,6 +21,9 @@ job [[ template "job_name" . ]] {
       port "core2" {
         static = [[ .stellar_horizon.core2_port ]]
       }
+      port "admin" {
+        to = [[ .stellar_horizon.admin_port ]]
+      }
     }
 
     volume "postgresql" {
@@ -157,6 +160,21 @@ job [[ template "job_name" . ]] {
         }
 
         tags = [[ .stellar_horizon.service_tags | toJson ]]
+      }
+      [[ end ]]
+      [[ if .stellar_horizon.admin_port_enable ]]
+      service {
+        name = "[[ .stellar_horizon.registered_service_name ]]-admin"
+        port = "[[ .stellar_horizon.admin_port ]]"
+        provider = "[[ .stellar_horizon.service_registration_provider ]]"
+
+        check {
+          type     = "tcp"
+          interval = "10s"
+          timeout  = "2s"
+        }
+
+        tags = [[ .stellar_horizon.admin_service_tags | toJson ]]
       }
       [[ end ]]
     }
