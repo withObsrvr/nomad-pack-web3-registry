@@ -117,7 +117,6 @@ job [[ template "job_name" . ]] {
       {{ end }}
       {{ if .stellar_horizon.admin_port_enable }}
       ADMIN_PORT=[[ .stellar_horizon.admin_port ]]
-      
       {{ end }}
       
       APPLY_MIGRATIONS=[[ .stellar_horizon.apply_migrations ]]
@@ -131,6 +130,9 @@ job [[ template "job_name" . ]] {
       {{ with nomadVar "nomad/jobs/[[ template "nomadvar_job_name" . ]]" }}
       DOCKERHUB_USERNAME = {{ .dockerhub_username }}
       DOCKERHUB_PASSWORD = {{ .dockerhub_password }}
+      {{ end }}
+      {{ if .stellar_horizon.admin_port_enable }}
+      ADMIN_PORT=[[ .stellar_horizon.admin_port ]]
       {{ end }}
         EOF
         destination = "${NOMAD_SECRETS_DIR}/env.vars"
