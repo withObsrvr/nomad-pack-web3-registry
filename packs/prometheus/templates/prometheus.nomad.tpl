@@ -70,6 +70,7 @@ EOH
         name = [[ $service.service_name | quote ]]
         port = [[ $service.service_port_label | quote ]]
         tags = [[ $service.service_tags | toStringList ]]
+        provider = "nomad"
 
         check {
           type     = "http"
