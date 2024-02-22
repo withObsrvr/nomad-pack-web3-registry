@@ -48,7 +48,7 @@ variable "prometheus_group_network" {
     ports = map(number)
   })
   default = {
-    mode  = "bridge",
+    mode  = "host",
     ports = {
       "http" = 9090,
     },

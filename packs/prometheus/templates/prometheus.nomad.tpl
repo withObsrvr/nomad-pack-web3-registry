@@ -29,14 +29,15 @@ job [[ template "full_job_name" . ]] {
 
       config {
         image = "prom/prometheus:v[[ .prometheus.prometheus_task.version ]]"
-        args = [[ .prometheus.prometheus_task.cli_args | toPrettyJson ]]
-        volumes = [
-          "local/config:/etc/prometheus/config",
-        ]
         auth {
           username = "[[ .prometheus.db_dockerhub_username ]]"
           password = "[[ .prometheus.db_dockerhub_password ]]"
         }
+        args = [[ .prometheus.prometheus_task.cli_args | toPrettyJson ]]
+        volumes = [
+          "local/config:/etc/prometheus/config",
+        ]
+        
       }
 
 [[- if ne .prometheus.prometheus_task_app_prometheus_yaml "" ]]
