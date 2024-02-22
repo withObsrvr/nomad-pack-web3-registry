@@ -38,17 +38,18 @@ job [[ template "full_job_name" . ]] {
           "local/config:/etc/prometheus/config",
         ]
         
-      }
+    }
     template {
-        data = <<EOF
-      {{ with nomadVar "nomad/jobs/[[ template "nomadvar_job_name" . ]]" }}
-      DOCKERHUB_USERNAME = {{ .dockerhub_username }}
-      DOCKERHUB_PASSWORD = {{ .dockerhub_password }}
-      {{ end }}
+      data = <<EOF
+    {{ with nomadVar "nomad/jobs/[[ template "nomadvar_job_name" . ]]" }}
+    DOCKERHUB_USERNAME = {{ .dockerhub_username }}
+    DOCKERHUB_PASSWORD = {{ .dockerhub_password }}
+    {{ end }}
         EOF
         destination = "${NOMAD_SECRETS_DIR}/env.vars"
         env         = true
-      }
+    }
+
 
 [[- if ne .prometheus.prometheus_task_app_prometheus_yaml "" ]]
       template {
