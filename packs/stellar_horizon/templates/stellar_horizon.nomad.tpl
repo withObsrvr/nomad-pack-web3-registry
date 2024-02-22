@@ -165,7 +165,7 @@ job [[ template "job_name" . ]] {
       [[ if .stellar_horizon.admin_port_enable ]]
       service {
         name = "[[ .stellar_horizon.registered_service_name ]]-admin"
-        port = "[[ .stellar_horizon.admin_port ]]"
+        port = "admin"
         provider = "[[ .stellar_horizon.service_registration_provider ]]"
 
         check {
