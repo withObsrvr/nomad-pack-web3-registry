@@ -30,8 +30,8 @@ job [[ template "full_job_name" . ]] {
       config {
         image = "prom/prometheus:v[[ .prometheus.prometheus_task.version ]]"
         auth {
-          username = "[[ .prometheus.db_dockerhub_username ]]"
-          password = "[[ .prometheus.db_dockerhub_password ]]"
+          username = "${DOCKERHUB_USERNAME}"
+          password = "${DOCKERHUB_PASSWORD}"
         }
         args = [[ .prometheus.prometheus_task.cli_args | toPrettyJson ]]
         volumes = [
