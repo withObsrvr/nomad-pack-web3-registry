@@ -22,7 +22,7 @@ job [[ template "job_name" . ]] {
         static = [[ .stellar_horizon.core2_port ]]
       }
       port "admin" {
-        to = [[ .stellar_horizon.admin_port ]]
+        static = [[ .stellar_horizon.admin_port ]]
       }
     }
 
