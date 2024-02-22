@@ -33,6 +33,7 @@ job [[ template "full_job_name" . ]] {
           username = "${DOCKERHUB_USERNAME}"
           password = "${DOCKERHUB_PASSWORD}"
         }
+        ports = ["http"]
         args = [[ .prometheus.prometheus_task.cli_args | toPrettyJson ]]
         volumes = [
           "local/config:/etc/prometheus/config",
