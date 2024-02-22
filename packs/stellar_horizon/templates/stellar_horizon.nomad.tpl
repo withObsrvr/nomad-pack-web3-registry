@@ -115,10 +115,7 @@ job [[ template "job_name" . ]] {
       CAPTIVE_CORE_CONFIG_PATH="local/stellar_captive_core.cfg"
       HISTORY_RETENTION_COUNT="[[ .stellar_horizon.history_retention_count ]]"
       {{ end }}
-      {{ if .stellar_horizon.admin_port_enable }}
       ADMIN_PORT=[[ .stellar_horizon.admin_port ]]
-      {{ end }}
-      
       APPLY_MIGRATIONS=[[ .stellar_horizon.apply_migrations ]]
       DISABLE_TX_SUB=[[ .stellar_horizon.disable_tx_sub ]]
         EOF
