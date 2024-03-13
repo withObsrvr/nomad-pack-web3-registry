@@ -51,7 +51,7 @@ job [[ template "job_name" . ]] {
       config {
         image = "postgres:[[ .stellar_horizon.db_image_tag ]]"
         ports = ["db"]
-        network_mode = "host"
+
     
 
 
