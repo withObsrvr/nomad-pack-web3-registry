@@ -177,6 +177,11 @@ job [[ template "job_name" . ]] {
         tags = [[ .stellar_horizon.admin_service_tags | toJson ]]
       }
       [[ end ]]
+      # Reap data from horizon database past HISTORY_RETENTION_COUNT
+      action "reap-horizon-db" {
+        command = "/bin/sh"
+        args    = ["-c", "stellar-horizon db reap"]
+      }
     }
   }
 }
