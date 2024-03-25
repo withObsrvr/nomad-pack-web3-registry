@@ -21,7 +21,7 @@ job [[ template "job_name" . ]] {
 
       config {
         image = "stellar/soroban-rpc:[[ .docker_soroban_rpc.image_tag ]]"
-        ports = ["http"]
+        ports = ["http", "admin"]
         args  = [[ .docker_soroban_rpc.image_args | toJson ]]
 
         auth {
@@ -78,7 +78,10 @@ job [[ template "job_name" . ]] {
     }
     network {
       port "http" {
-        static = 8090
+        static = [[ .docker_soroban_rpc.http_port ]]
+      }
+      port "admin" {
+        static = [[ .docker_soroban_rpc.admin_port ]]
       }
     }
   }

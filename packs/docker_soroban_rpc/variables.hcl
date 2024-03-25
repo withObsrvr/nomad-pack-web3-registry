@@ -1,3 +1,15 @@
+variable "admin_port" {
+  description = "The port to use for the admin interface"
+  type        = number
+  default     = 6061
+}
+
+variable "http_port" {
+  description = "The port to use for the http interface"
+  type        = number
+  default     = 8090
+}
+
 variable "history_archive_urls" {
   description = "A list of history archive urls to use for the app"
   type        = string
