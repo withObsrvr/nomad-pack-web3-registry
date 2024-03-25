@@ -85,7 +85,7 @@ job [[ template "job_name" . ]] {
           timeout  = "2s"
         }
 
-        tags = [[ .docker_soroban_rpc.service_tags | toJson ]]
+        tags = [[ .docker_soroban_rpc.admin_service_tags | toJson ]]
       }
       [[ end ]]
     }
