@@ -74,6 +74,19 @@ job [[ template "job_name" . ]] {
 
         tags = [[ .docker_soroban_rpc.service_tags | toJson ]]
       }
+      service {
+        name = "[[ .docker_soroban_rpc.registered_service_name ]]-admin"
+        port = "admin"
+        provider = "[[ .docker_soroban_rpc.service_registration_provider ]]"
+
+        check {
+          type     = "tcp"
+          interval = "10s"
+          timeout  = "2s"
+        }
+
+        tags = [[ .docker_soroban_rpc.service_tags | toJson ]]
+      }
       [[ end ]]
     }
     network {
