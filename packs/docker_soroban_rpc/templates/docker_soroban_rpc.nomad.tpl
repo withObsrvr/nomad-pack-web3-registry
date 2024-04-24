@@ -14,6 +14,15 @@ job [[ template "job_name" . ]] {
       mode     = "delay"
     }
 
+    update {
+      max_parallel      = 1
+      healthy_deadline  = "30m"
+      progress_deadline = "30m"
+      auto_revert       = true
+      auto_promote      = false
+      canary            = 1
+    }
+
     task [[ template "job_name" . ]] {
       driver = "docker"
       
