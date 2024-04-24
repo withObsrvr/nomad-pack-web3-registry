@@ -16,8 +16,8 @@ job [[ template "job_name" . ]] {
 
     update {
       max_parallel      = 1
-      healthy_deadline  = "30m"
-      progress_deadline = "30m"
+      healthy_deadline  = "40m"
+      progress_deadline = "1h"
       auto_revert       = true
       auto_promote      = false
       canary            = 1
