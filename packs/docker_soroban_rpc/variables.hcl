@@ -71,6 +71,12 @@ variable "datacenters" {
   default     = ["dc1"]
 }
 
+variable "deprecated_sql_ledger_state" {
+  description = "The state of the SQL ledger"
+  type        = bool
+  default     = false
+}
+
 variable "register_service" {
   description = "If you want to register a nomad or consul service for the job"
   type        = bool
