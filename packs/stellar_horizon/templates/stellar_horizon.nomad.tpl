@@ -7,6 +7,8 @@ job [[ template "job_name" . ]] {
   group [[ template "job_name" . ]] {
     count = [[ .stellar_horizon.count ]]
 
+
+
     network {
       mode = "host"
       port "http" {
