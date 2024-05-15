@@ -199,6 +199,12 @@ variable "db_task_resources" {
   }
 }
 
+variable "deprecated_sql_ledger_state" {
+  description = "If you want to use the deprecated sql ledger state"
+  type        = bool
+  default     = false
+}
+
 variable "history_archive_urls" {
   description = "A list of history archive urls to use for the app"
   type        = string

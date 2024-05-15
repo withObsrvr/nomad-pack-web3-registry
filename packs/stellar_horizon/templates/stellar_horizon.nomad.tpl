@@ -127,6 +127,7 @@ job [[ template "job_name" . ]] {
       ADMIN_PORT=[[ .stellar_horizon.admin_port ]]
       APPLY_MIGRATIONS=[[ .stellar_horizon.apply_migrations ]]
       DISABLE_TX_SUB=[[ .stellar_horizon.disable_tx_sub ]]
+      DEPRECATED_SQL_LEDGER_STATE=[[ .stellar_horizon.deprecated_sql_ledger_state ]]
         EOF
         destination = "local/env.txt"
         env         = true
