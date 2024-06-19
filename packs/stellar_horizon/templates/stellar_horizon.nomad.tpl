@@ -123,6 +123,7 @@ job [[ template "job_name" . ]] {
       STELLAR_CORE_BINARY_PATH="/usr/bin/stellar-core"
       CAPTIVE_CORE_CONFIG_PATH="local/stellar_captive_core.cfg"
       HISTORY_RETENTION_COUNT="[[ .stellar_horizon.history_retention_count ]]"
+      PER_HOUR_RATE_LIMIT="[[ .stellar_horizon.per_hour_rate_limit ]]"
       {{ end }}
       ADMIN_PORT=[[ .stellar_horizon.admin_port ]]
       APPLY_MIGRATIONS=[[ .stellar_horizon.apply_migrations ]]

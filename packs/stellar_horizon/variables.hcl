@@ -205,6 +205,12 @@ variable "deprecated_sql_ledger_state" {
   default     = false
 }
 
+variable "per_hour_rate_limit" {
+  description = "The rate limit per hour"
+  type        = number
+  default     = 3600
+}
+
 variable "history_archive_urls" {
   description = "A list of history archive urls to use for the app"
   type        = string
