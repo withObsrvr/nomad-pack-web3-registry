@@ -234,3 +234,9 @@ variable "disable_tx_sub" {
   type        = bool
   default     = true
 }
+
+variable "skip_txmeta" {
+  description = "If you want to skip the transaction meta"
+  type        = bool
+  default     = true
+}
