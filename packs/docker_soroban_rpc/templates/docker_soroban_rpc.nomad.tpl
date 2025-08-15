@@ -31,16 +31,18 @@ job [[ template "job_name" . ]] {
           password = "${DOCKERHUB_PASSWORD}"
         }
       }
+      [[ if .docker_soroban_rpc.gcp_credentials_vault_path ]]
       # Get GCP credentials from Vault
       template {
         destination = "secrets/google-credentials.json"
         data = <<EOH
-{{ with secret "secret/gcp/credentials" }}{{ .Data.data.credentials }}{{ end }}
+{{` with secret "`}}[[ .docker_soroban_rpc.gcp_credentials_vault_path ]]{{`" `}}{{` .Data.data.credentials `}}{{` end `}}
 EOH
       }
+      [[ end ]]
       template {
         data        = <<EOF
-      GOOGLE_APPLICATION_CREDENTIALS = "/secrets/google-credentials.json"
+      [[ if .docker_soroban_rpc.gcp_credentials_vault_path ]]GOOGLE_APPLICATION_CREDENTIALS = "/secrets/google-credentials.json"[[ end ]]
       NETWORK_PASSPHRASE="[[ .docker_soroban_rpc.network_passphrase ]]"
       HISTORY_ARCHIVE_URLS="[[ .docker_soroban_rpc.history_archive_urls ]]"
       STELLAR_CORE_BINARY_PATH="/usr/bin/stellar-core"

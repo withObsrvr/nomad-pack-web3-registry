@@ -142,3 +142,9 @@ variable "stellar_rpc_config" {
   type        = string
   default     = ""
 }
+
+variable "gcp_credentials_vault_path" {
+  description = "The Vault path to GCP credentials secret"
+  type        = string
+  default     = ""
+}
