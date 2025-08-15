@@ -19,6 +19,17 @@ job [[ template "job_name" . ]] {
     task [[ template "job_name" . ]] {
       driver = "docker"
       
+      [[ if .docker_soroban_rpc.gcp_credentials_vault_path ]]
+      vault {
+        role = "nomad"
+      }
+      
+      identity {
+        name = "vault_default"
+        aud = ["vault.io"]
+        ttl = "1h"
+      }
+      [[ end ]]
 
 
       config {
@@ -31,6 +42,7 @@ job [[ template "job_name" . ]] {
           password = "${DOCKERHUB_PASSWORD}"
         }
       }
+      
       [[ if .docker_soroban_rpc.gcp_credentials_vault_path ]]
       # Get GCP credentials from Vault
       template {
