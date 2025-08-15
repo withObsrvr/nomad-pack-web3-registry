@@ -36,7 +36,7 @@ job [[ template "job_name" . ]] {
       template {
         destination = "secrets/google-credentials.json"
         data = <<EOH
-{{` with secret "`}}[[ .docker_soroban_rpc.gcp_credentials_vault_path ]]{{`" `}}{{` .Data.data.credentials `}}{{` end `}}
+{{ with secret "[[ .docker_soroban_rpc.gcp_credentials_vault_path ]]" }}{{ .Data.data.credentials }}{{ end }}
 EOH
       }
       [[ end ]]

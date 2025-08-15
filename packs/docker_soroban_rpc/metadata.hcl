@@ -7,5 +7,5 @@ pack {
   name        = "docker_soroban_rpc"
   description = "Soroban RPC Docker Image"
   url         = "https://github.com/withObsrvr/nomad-pack-web3-registry/docker_soroban_rpc"
-  version     = "0.0.20"
+  version     = "0.0.21"
 }
