@@ -136,3 +136,9 @@ variable "task_resources" {
     memory = 2000,
   }
 }
+
+variable "stellar_rpc_config" {
+  description = "The TOML configuration content for stellar-rpc"
+  type        = string
+  default     = ""
+}
